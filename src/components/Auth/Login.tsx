@@ -7,10 +7,10 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate();  // Reemplazar useHistory por useNavigate
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    e.preventDefault();
 
         if (!email || !password) {
             setError('Por favor, rellena todos los campos');
@@ -18,24 +18,27 @@ const Login: React.FC = () => {
         }
 
         try {
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
-                email,
-                password,
-            });
+            const response = await axios.post(
+                `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
+                { email, password },
+                { withCredentials: true } // Asegúrate de agregar esta línea
+            );
 
             const { token, role } = response.data;
             localStorage.setItem('token', token);
 
-            // Redirigir dependiendo del rol
+            // Redirigir según el rol del usuario
             if (role === 'pasajero') {
                 navigate('/passenger-home');
             } else if (role === 'conductor') {
                 navigate('/driver-home');
             }
-        } catch (error) {
-            setError('Credenciales inválidas o error en el servidor');
+        } catch (error: any) {
+            console.error('Error en el inicio de sesión:', error);
+            setError(error.response?.data?.message || 'Credenciales inválidas o error en el servidor');
         }
     };
+
 
     const handleRegister = () => {
         navigate('/register'); // Redirigir a la página de registro
