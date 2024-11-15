@@ -1,18 +1,26 @@
-// src/components/ConfirmedWheelCard.tsx
 import React from 'react';
+import './ConfirmedWheelCard.css';
 
-// Define las propiedades que espera el componente
 interface ConfirmedWheelCardProps {
-    wheel: any; // Cambia 'any' por el tipo real de wheel que estás utilizando
-    onClick: () => void; // Asegúrate de incluir onClick
+    wheel: {
+        title: string;
+        description: string;
+        driverName?: string;
+        vehicleModel?: string;
+        capacity?: number;
+    };
+    onClick: () => void;
+    className?: string; // Add className as an optional prop
 }
 
-const ConfirmedWheelCard: React.FC<ConfirmedWheelCardProps> = ({ wheel, onClick }) => {
+const ConfirmedWheelCard: React.FC<ConfirmedWheelCardProps> = ({ wheel, onClick, className }) => {
     return (
-        <div className="confirmed-wheel-card" onClick={onClick}>
-            <h3>{wheel.title}</h3>
-            <p>{wheel.details}</p>
-            {/* Más información sobre el wheel */}
+        <div className={`wheel-card ${className}`} onClick={onClick}>
+            <h3 className="wheel-title">{wheel.title}</h3>
+            <p className="wheel-description">{wheel.description}</p>
+            {wheel.driverName && <p><strong>Driver:</strong> {wheel.driverName}</p>}
+            {wheel.vehicleModel && <p><strong>Vehicle:</strong> {wheel.vehicleModel}</p>}
+            {wheel.capacity && <p><strong>Capacity:</strong> {wheel.capacity}</p>}
         </div>
     );
 };

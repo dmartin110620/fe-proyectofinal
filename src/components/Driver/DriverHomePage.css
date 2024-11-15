@@ -1,0 +1,186 @@
+/* src/components/Driver/DriverHomePage.css */
+
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Main container for the page */
+.driver-homepage {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Page title */
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+/* Buttons for switching roles */
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #e0e0e0;
+    margin: 0 5px;
+}
+
+.tab-button.active {
+    background-color: #2F2895;
+    color: white;
+}
+
+/* Empty vehicles message */
+.no-vehicles-message {
+    color: #666;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+/* Add vehicle button */
+.add-vehicle-button {
+    background-color: #2F2895;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.add-vehicle-button:hover {
+    background-color: #357ABD;
+}
+
+/* Vehicles section */
+.vehicles-list {
+    width: 100%;
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.vehicles-list li {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vehicles-list li:last-child {
+    border-bottom: none;
+}
+
+/* Confirmed passengers section */
+.confirmed-passengers-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirmed-passengers {
+    width: calc(100% - 30px);
+    max-width: 500px;
+    margin: 20px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    padding: 15px;
+}
+
+.confirmed-passengers p {
+    color: #333;
+    font-size: 16px;
+}
+
+.confirmed-passenger-card {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.confirmed-passenger-card:last-child {
+    border-bottom: none;
+}
+
+.confirmed-passenger-card:hover {
+    background-color: #f2f2f2;
+}
+
+/* Create wheel button */
+.create-wheel-button {
+    background-color: #2F2895;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+.create-wheel-button:hover {
+    background-color: #3A2BDD;
+}
+
+/* Form modal styling */
+.vehicle-form,
+.create-wheel-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.vehicle-form h3,
+.create-wheel-form h3 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.vehicle-form button,
+.create-wheel-form button {
+    background-color: #2F2895;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.vehicle-form button:hover,
+.create-wheel-form button:hover {
+    background-color: #3A2BDD;
+}

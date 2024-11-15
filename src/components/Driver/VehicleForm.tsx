@@ -1,111 +1,123 @@
-// src/components/Driver/VehicleForm.tsx
 import React, { useState } from 'react';
+import './VehicleForm.css';
 
 interface VehicleFormProps {
-    onClose: () => void;          // Función para cerrar el formulario
-    onSave: () => Promise<void>;  // Función para ejecutar después de guardar el vehículo
+    onClose: () => void;
+    onSave: () => Promise<void>;
 }
 
 const VehicleForm: React.FC<VehicleFormProps> = ({ onClose, onSave }) => {
-    const [plate, setPlate] = useState<string>('');         // Estado para la placa del vehículo
-    const [model, setModel] = useState<string>('');         // Estado para el modelo del vehículo
-    const [brand, setBrand] = useState<string>('');         // Estado para la marca del vehículo
-    const [capacity, setCapacity] = useState<number | ''>(''); // Estado para la capacidad del vehículo
-    const [photo, setPhoto] = useState<File | null>(null);   // Estado para la foto del vehículo
-    const [error, setError] = useState<string>('');          // Estado para manejar errores
+    const [plate, setPlate] = useState<string>('');
+    const [model, setModel] = useState<string>('');
+    const [brand, setBrand] = useState<string>('');
+    const [capacity, setCapacity] = useState<number | ''>('');
+    const [photo, setPhoto] = useState<File | null>(null);
+    const [error, setError] = useState<string>('');
 
-    // Función para manejar el envío del formulario
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+        e.preventDefault();
 
-        // Validación básica de los campos
         if (!plate || !model || !brand || (capacity !== '' && capacity <= 0) || !photo) {
             setError('Todos los campos son obligatorios y la capacidad debe ser mayor a 0.');
             return;
         }
 
-        const vehicleData = {
-            plate,
-            model,
-            brand,
-            capacity,
-            photo, // Aquí deberías manejar la carga de la foto de manera adecuada
-        };
-
         try {
-            // Lógica para guardar el vehículo, puede ser un llamado a la API
-            // Ejemplo: await saveVehicle(vehicleData);
-            await onSave(); // Llama a la función onSave pasada como prop para refrescar la lista
-            onClose();      // Cierra el formulario después de guardar
+            await onSave();
+            onClose();
         } catch (error) {
-            setError('Error al guardar el vehículo.'); // Manejo de errores
+            setError('Error al guardar el vehículo.');
             console.error(error);
         }
     };
 
     return (
-        <div>
-            <h2>Registrar Vehículo</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>} {/* Muestra el error si existe */}
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="plate">Placa:</label>
+        <div className="container">
+            <h2 className="title">Agrega los datos de tu vehículo</h2>
+            {error && <p className="error">{error}</p>}
+            <form className="form" onSubmit={handleSubmit}>
+                <div className="formGroup">
+                    <label htmlFor="plate" className="label">Placa</label>
                     <input
                         type="text"
                         id="plate"
                         value={plate}
                         onChange={(e) => setPlate(e.target.value)}
+                        className="input"
                         required
                     />
                 </div>
-                <div>
-                    <label htmlFor="model">Modelo:</label>
-                    <input
-                        type="text"
-                        id="model"
-                        value={model}
-                        onChange={(e) => setModel(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="brand">Marca:</label>
+                <div className="formGroup">
+                    <label htmlFor="brand" className="label">Marca</label>
                     <input
                         type="text"
                         id="brand"
                         value={brand}
                         onChange={(e) => setBrand(e.target.value)}
+                        className="input"
                         required
                     />
                 </div>
-                <div>
-                    <label htmlFor="capacity">Capacidad:</label>
+                <div className="formGroup">
+                    <label htmlFor="model" className="label">Modelo</label>
+                    <input
+                        type="text"
+                        id="model"
+                        value={model}
+                        onChange={(e) => setModel(e.target.value)}
+                        className="input"
+                        required
+                    />
+                </div>
+                <div className="formGroup">
+                    <label htmlFor="capacity" className="label">Capacidad del vehículo (Personas)</label>
                     <input
                         type="number"
                         id="capacity"
                         value={capacity}
                         onChange={(e) => setCapacity(Number(e.target.value))}
-                        min="1" // Asegura que la capacidad sea al menos 1
+                        className="input"
+                        min="1"
                         required
                     />
                 </div>
-                <div>
-                    <label htmlFor="photo">Foto del Vehículo:</label>
+                <div className="formGroup">
+                    <label htmlFor="photo" className="label">Foto del vehículo</label>
                     <input
                         type="file"
                         id="photo"
                         accept="image/*"
                         onChange={(e) => {
                             if (e.target.files) {
-                                setPhoto(e.target.files[0]); // Captura la foto seleccionada
+                                setPhoto(e.target.files[0]);
                             }
                         }}
+                        className="input"
                         required
                     />
                 </div>
-                <div>
-                    <button type="submit">Guardar</button>
-                    <button type="button" onClick={onClose}>Cancelar</button>
+                <div className="formGroup">
+                    <label htmlFor="soat" className="label">Foto del SOAT</label>
+                    <input
+                        type="file"
+                        id="soat"
+                        accept="image/*"
+                        onChange={(e) => {
+                            if (e.target.files) {
+                                setPhoto(e.target.files[0]);
+                            }
+                        }}
+                        className="input"
+                        required
+                    />
+                </div>
+                <div className="buttonContainer">
+                    <button type="button" className="button cancelButton" onClick={onClose}>
+                        Cancelar
+                    </button>
+                    <button type="submit" className="button saveButton">
+                        Agregar
+                    </button>
                 </div>
             </form>
         </div>

@@ -1,69 +1,79 @@
 // src/components/Driver/DriverHomePage.tsx
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import './DriverHomePage.css';
 import { getVehicles, getConfirmedPassengers, createWheel } from '../../utils/api.ts';
-import VehicleForm from './VehicleForm.tsx'; // Importa el formulario para agregar un vehículo
-import ConfirmedPassengerCard from './ConfirmedPassengerCard.tsx'; // Componente para mostrar los pasajeros confirmados
+import VehicleForm from './VehicleForm.tsx';
+import ConfirmedPassengerCard from './ConfirmedPassengerCard.tsx';
 
 const DriverHomePage = () => {
     const [vehicles, setVehicles] = useState<any[]>([]);
     const [confirmedPassengers, setConfirmedPassengers] = useState<any[]>([]);
     const [showVehicleForm, setShowVehicleForm] = useState<boolean>(false);
     const [showCreateWheelForm, setShowCreateWheelForm] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchVehicles();
         fetchConfirmedPassengers();
     }, []);
 
-    // Función para obtener los vehículos del conductor
+    // Function to fetch vehicles
     const fetchVehicles = async () => {
         try {
-            const response = await getVehicles(); // Llama a la API para obtener vehículos
+            const response = await getVehicles();
             setVehicles(response.data);
         } catch (error) {
-            console.error('Error al obtener los vehículos', error);
+            console.error('Error fetching vehicles', error);
         }
     };
 
-    // Función para obtener los pasajeros confirmados
+    // Function to fetch confirmed passengers
     const fetchConfirmedPassengers = async () => {
         try {
-            const response = await getConfirmedPassengers(); // Llama a la API para obtener pasajeros confirmados
+            const response = await getConfirmedPassengers();
             setConfirmedPassengers(response.data);
         } catch (error) {
-            console.error('Error al obtener los pasajeros confirmados', error);
+            console.error('Error fetching confirmed passengers', error);
         }
     };
 
-    // Función para manejar la creación de un wheel
+    // Function to handle creating a wheel
     const handleCreateWheel = async (wheelData: any) => {
         try {
-            await createWheel(wheelData); // Llama a la API para crear un wheel
-            fetchConfirmedPassengers(); // Refresca la lista de pasajeros confirmados
-            setShowCreateWheelForm(false); // Cierra el formulario
+            await createWheel(wheelData);
+            fetchConfirmedPassengers();
+            setShowCreateWheelForm(false);
         } catch (error) {
-            console.error('Error al crear el wheel', error);
+            console.error('Error creating wheel', error);
         }
     };
 
+    const handleNavigateToPassenger = () => {
+        navigate('/passenger');
+    }
+
     return (
-        <div>
+        <div className="driver-homepage">
             <h1>Página Principal del Conductor</h1>
 
+            <div className="tab-buttons">
+                <button className="tab-button" onClick={handleNavigateToPassenger}>Pasajero</button>
+                <button className="tab-button active">Conductor</button>
+            </div>
+
             {vehicles.length === 0 ? (
-                <div>
+                <div className="no-vehicles-message">
                     <h2>No tienes vehículos registrados.</h2>
-                    <button onClick={() => setShowVehicleForm(true)}>Agregar Vehículo</button>
+                    <button className="add-vehicle-button" onClick={() => setShowVehicleForm(true)}>Agregar Vehículo</button>
                 </div>
             ) : (
                 <div>
                     <h2>Tus Vehículos</h2>
-                    <ul>
+                    <ul className="vehicles-list">
                         {vehicles.map(vehicle => (
                             <li key={vehicle.id}>
                                 {vehicle.model} - {vehicle.plate}
-                                {/* Puedes agregar más detalles y opciones para eliminar/modificar el vehículo */}
                             </li>
                         ))}
                     </ul>
@@ -71,30 +81,31 @@ const DriverHomePage = () => {
             )}
 
             <h2>Pasajeros Confirmados</h2>
-            <div>
+            <div className='confirmed-passengers-cont'>
+                <div className="confirmed-passengers">
                 {confirmedPassengers.length === 0 ? (
                     <p>No hay pasajeros confirmados.</p>
                 ) : (
                     confirmedPassengers.map(passenger => (
-                        <ConfirmedPassengerCard key={passenger.id} passenger={passenger} />
+                        <ConfirmedPassengerCard className="confirmed-passenger-card" key={passenger.id} passenger={passenger} />
                     ))
                 )}
             </div>
+            </div>
 
-            <button onClick={() => setShowCreateWheelForm(true)}>Crear Wheel</button>
+            <button className="create-wheel-button" onClick={() => setShowCreateWheelForm(true)}>Crear Wheel</button>
 
             {showCreateWheelForm && (
-                <div>
-                    {/* Aquí puedes incluir un componente/formulario para crear un nuevo wheel */}
+                <div className="create-wheel-form">
                     <h3>Crear un nuevo Wheel</h3>
-                    {/* Tu formulario para crear un wheel aquí */}
+                    {/* Add your form elements here for creating a wheel */}
                 </div>
             )}
 
             {showVehicleForm && (
                 <VehicleForm
                     onClose={() => setShowVehicleForm(false)}
-                    onSave={fetchVehicles} // Refresca la lista de vehículos después de agregar uno
+                    onSave={fetchVehicles}
                 />
             )}
         </div>
