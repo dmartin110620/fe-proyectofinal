@@ -1,0 +1,84 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Encabezado */
+h2 {
+    color: #3d3d3d;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Grupo de formulario */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    font-size: 14px;
+    color: #3d3d3d;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+/* Botones */
+button.btn {
+    background-color: #3d3d3d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+button.btn:hover {
+    background-color: #555;
+}
+
+button.register-btn {
+    background-color: #2F2895;
+    margin-top: 20px;
+}
+
+button.register-btn:hover {
+    background-color: #3d3d3d;
+}
+
+/* Mensaje de error */
+.error {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
