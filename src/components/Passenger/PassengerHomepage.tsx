@@ -39,6 +39,9 @@ const PassengerHomePage: React.FC = () => {
     const handleNavigateToDriver = () => {
         navigate('/driver');
     };
+    const handleNavigateToSearch = () => {
+        navigate('/search-wheels');
+    };
 
 
     return (
@@ -67,8 +70,8 @@ const PassengerHomePage: React.FC = () => {
                 )}
             </div>
 
-            <div className="search-button-container">
-                <div className="search-button" onClick={() => alert("Buscar un wheels")}>
+            <div id="search-button-container">
+                <div id="search-button" onClick={handleNavigateToSearch}>
                     🔍
                 </div>
                 <p>Busca un wheels</p>
