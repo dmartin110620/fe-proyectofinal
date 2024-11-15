@@ -1,7 +1,7 @@
 /* RideForm.css */
 
 .ride-form-container {
-    width: 100vw;
+    width: 100%;
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
@@ -30,6 +30,7 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .form-group label {
@@ -51,9 +52,7 @@
     color: #333;
     transition: border-color 0.2s;
 }
-.form-group input #passengers {
-    width: 100%;
-}
+
 
 .form-group input[type="text"]::placeholder,
 .form-group input[type="number"]::placeholder,
