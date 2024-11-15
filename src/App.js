@@ -6,6 +6,8 @@ import Register from './components/Auth/Register.tsx';
 import DriverHomePage from './components/Driver/DriverHomepage.tsx'; // Ensure the path is correct with .tsx extension
 import PassengerHomePage from './components/Passenger/PassengerHomepage.tsx'; // Ensure the path is correct with .tsx extension
 import './App.css'; // Ensure this CSS file exists
+import SearchWheels from './components/Passenger/SearchWheels.tsx';
+import CreateWheels from './components/Driver/CreateWheels.tsx';
 
 const App = () => {
     return (
@@ -15,6 +17,8 @@ const App = () => {
                 <Route path="/register" element={<Register />} /> {/* Asegúrate de que Register sea tu componente de registro */}
                 <Route path="/driver" element={<DriverHomePage />} /> {/* Driver's homepage */}
                 <Route path="/passenger" element={<PassengerHomePage />} /> {/* Passenger's homepage */}
+                <Route path="/search-wheels" element={<SearchWheels />} /> {/* Passenger's homepage */}
+                <Route path="/createwheels" element={<CreateWheels />} /> {/* Passenger's homepage */}
             </Routes>
         </Router>
     );

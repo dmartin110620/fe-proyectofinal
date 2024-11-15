@@ -1,8 +1,7 @@
-// src/components/Driver/DriverHomePage.tsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './DriverHomePage.css';
-import { getVehicles, getConfirmedPassengers, createWheel } from '../../utils/api.ts';
+import { getVehicles, getConfirmedPassengers } from '../../utils/api.ts';
 import VehicleForm from './VehicleForm.tsx';
 import ConfirmedPassengerCard from './ConfirmedPassengerCard.tsx';
 
@@ -10,7 +9,6 @@ const DriverHomePage = () => {
     const [vehicles, setVehicles] = useState<any[]>([]);
     const [confirmedPassengers, setConfirmedPassengers] = useState<any[]>([]);
     const [showVehicleForm, setShowVehicleForm] = useState<boolean>(false);
-    const [showCreateWheelForm, setShowCreateWheelForm] = useState<boolean>(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,19 +36,12 @@ const DriverHomePage = () => {
         }
     };
 
-    // Function to handle creating a wheel
-    const handleCreateWheel = async (wheelData: any) => {
-        try {
-            await createWheel(wheelData);
-            fetchConfirmedPassengers();
-            setShowCreateWheelForm(false);
-        } catch (error) {
-            console.error('Error creating wheel', error);
-        }
-    };
-
     const handleNavigateToPassenger = () => {
         navigate('/passenger');
+    }
+
+    const handleNavigateToCreateWheels = () => {
+        navigate('/createwheels'); // Navigate to CreateWheels.tsx route
     }
 
     return (
@@ -87,20 +78,13 @@ const DriverHomePage = () => {
                     <p>No hay pasajeros confirmados.</p>
                 ) : (
                     confirmedPassengers.map(passenger => (
-                        <ConfirmedPassengerCard className="confirmed-passenger-card" key={passenger.id} passenger={passenger} />
+                        <ConfirmedPassengerCard key={passenger.id} passenger={passenger} />
                     ))
                 )}
             </div>
             </div>
 
-            <button className="create-wheel-button" onClick={() => setShowCreateWheelForm(true)}>Crear Wheel</button>
-
-            {showCreateWheelForm && (
-                <div className="create-wheel-form">
-                    <h3>Crear un nuevo Wheel</h3>
-                    {/* Add your form elements here for creating a wheel */}
-                </div>
-            )}
+            <button className="create-wheel-button" onClick={handleNavigateToCreateWheels}>Crear Wheel</button>
 
             {showVehicleForm && (
                 <VehicleForm

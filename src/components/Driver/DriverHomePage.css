@@ -101,7 +101,7 @@ h1 {
 }
 
 .confirmed-passengers {
-    width: calc(100% - 30px);
+    width: calc(100% - 50px);
     max-width: 500px;
     margin: 20px 0;
     border-radius: 8px;
