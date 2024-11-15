@@ -12,32 +12,32 @@ const Login: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!email || !password) {
-        setError('Por favor, rellena todos los campos');
-        return;
-    }
-
-    try {
-        const response = await axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
-            { email, password },
-            { withCredentials: true } // Asegúrate de agregar esta línea
-        );
-
-        const { token, role } = response.data;
-        localStorage.setItem('token', token);
-
-        // Redirigir según el rol del usuario
-        if (role === 'pasajero') {
-            navigate('/passenger-home');
-        } else if (role === 'conductor') {
-            navigate('/driver-home');
+        if (!email || !password) {
+            setError('Por favor, rellena todos los campos');
+            return;
         }
-    } catch (error: any) {
-        console.error('Error en el inicio de sesión:', error);
-        setError(error.response?.data?.message || 'Credenciales inválidas o error en el servidor');
-    }
-};
+
+        try {
+            const response = await axios.post(
+                `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
+                { email, password },
+                { withCredentials: true } // Asegúrate de agregar esta línea
+            );
+
+            const { token, role } = response.data;
+            localStorage.setItem('token', token);
+
+            // Redirigir según el rol del usuario
+            if (role === 'pasajero') {
+                navigate('/passenger-home');
+            } else if (role === 'conductor') {
+                navigate('/driver-home');
+            }
+        } catch (error: any) {
+            console.error('Error en el inicio de sesión:', error);
+            setError(error.response?.data?.message || 'Credenciales inválidas o error en el servidor');
+        }
+    };
 
 
     const handleRegister = () => {
