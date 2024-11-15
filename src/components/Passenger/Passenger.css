@@ -55,6 +55,7 @@ h2 {
     background-color: #e0e0e0;
     flex: 1;
     text-align: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .tab-button.active {
