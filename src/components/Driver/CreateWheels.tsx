@@ -51,7 +51,7 @@ const RideForm: React.FC<RideFormProps> = ({ onCreate }) => {
     }; 
 
     return (
-        <div className="ride-form-container">
+        <div className="ride-form-container" id='ride-form-container'>
             <h2>Create un Wheels</h2>
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
@@ -88,7 +88,7 @@ const RideForm: React.FC<RideFormProps> = ({ onCreate }) => {
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group" id='pasajeros'>
                     <label htmlFor="passengers">Cupos disponibles</label>
                     <input
                         type="number"
@@ -100,7 +100,7 @@ const RideForm: React.FC<RideFormProps> = ({ onCreate }) => {
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group" id='fecha'>
                     <label htmlFor="date">Fecha</label>
                     <input
                         type="date"
@@ -111,7 +111,7 @@ const RideForm: React.FC<RideFormProps> = ({ onCreate }) => {
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group" id='hora'>
                     <label htmlFor="time">Hora</label>
                     <input
                         type="time"
