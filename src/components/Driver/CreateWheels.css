@@ -11,6 +11,10 @@
     background-color: #fff;
 }
 
+#ride-form-container {
+    min-width: 500px;
+}
+
 .ride-form-container h2 {
     font-size: 24px;
     font-weight: 600;
@@ -32,6 +36,19 @@
     margin-bottom: 20px;
     width: 100%;
 }
+.form-group #password {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 101%;
+}
+
+.form-group #email {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 101%;
+}
 
 .form-group label {
     font-size: 16px;
@@ -51,6 +68,18 @@
     font-size: 16px;
     color: #333;
     transition: border-color 0.2s;
+}
+
+#pasajeros{
+    width: 95%;
+}
+
+#fecha {
+    width: 95%;
+}
+
+#hora {
+    width: 95%;
 }
 
 
