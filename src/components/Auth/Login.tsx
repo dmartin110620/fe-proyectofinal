@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // Importar useNavigate para la redirección
 import axios from 'axios';
+import PassengerHomePage from '../Passenger/PassengerHomepage';
 import '../Auth/Login.css';
 
 const Login: React.FC = () => {
@@ -10,7 +11,7 @@ const Login: React.FC = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        navigate('/passenger-home');
+        navigate('/passenger');
     // e.preventDefault();
 
     //     if (!email || !password) {
