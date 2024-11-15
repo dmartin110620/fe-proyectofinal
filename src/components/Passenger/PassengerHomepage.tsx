@@ -3,6 +3,7 @@ import { getConfirmedWheels, searchWheels } from '../../utils/api.ts'; // Import
 import ConfirmedWheelCard from './ConfirmedWheelCard.tsx'; // Asegúrate de crear este componente
 import SearchWheels from './SearchWheels.tsx'; // Componente para buscar wheels
 import Modal from '../common/Modal.tsx'; // Componente modal para mostrar detalles de wheels
+import '../Passenger/Passenger.css';
 
 const PassengerHomePage: React.FC = () => {
     const [confirmedWheels, setConfirmedWheels] = useState<any[]>([]); // Estado para wheels confirmados
